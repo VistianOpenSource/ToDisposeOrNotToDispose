@@ -4,6 +4,7 @@ using System.Drawing;
 
 using Foundation;
 using ReactiveUI;
+using Shared;
 using UIKit;
 
 namespace ToDisposeOrNotToDispose.iOS
@@ -22,8 +23,10 @@ namespace ToDisposeOrNotToDispose.iOS
         {
             this.MoveForwardButton.TouchUpInside += Button_Click;
 
-            AddToDisposable(this.BindCommand (ViewModel, vm => vm.DoIt, v => v.BoundButton));
-            AddToDisposable(this.OneWayBind (ViewModel, vm => vm.Name, v => v.nameLabel.Text));
+            AddToDisposable(this.BindCommand (ViewModel, vm => vm.DoIt, v => v.BoundButton), true);
+            AddToDisposable(this.OneWayBind (ViewModel, vm => vm.Name, v => v.nameLabel.Text), true);
+
+              this.ViewModel = Models.GetModel (2);
         }
 
         private void Button_Click(object sender, System.EventArgs e)

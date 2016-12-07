@@ -37,6 +37,7 @@
     <Compile Include="MyModel1.cs" />
     <Compile Include="ObservableLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ReactiveUI, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -24,8 +24,10 @@ namespace ToDisposeOrNotToDispose.iOS
         {
             this.moveForwardButton.TouchUpInside += Button_Click;
 
-            AddToDisposable(this.BindCommand (ViewModel, vm => vm.DoIt, v => v.boundButton));
-            AddToDisposable(this.OneWayBind (ViewModel, vm => vm.Name, v => v.nameLabel.Text));
+            AddToDisposable(this.BindCommand (ViewModel, vm => vm.DoIt, v => v.boundButton), true);
+            AddToDisposable(this.OneWayBind (ViewModel, vm => vm.Name, v => v.nameLabel.Text), true);
+
+            this.ViewModel = Models.GetModel (1);
         }
 
         private void Button_Click(object sender, System.EventArgs e)

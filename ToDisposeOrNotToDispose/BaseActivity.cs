@@ -38,12 +38,12 @@ namespace ToDisposeOrNotToDispose
             _button.Click += Button_Click;
 
             _boundButton = this.FindViewById<Button>(Resource.Id.boundButton);
-            AddToDisposable(this.BindCommand (ViewModel, vm => vm.DoIt, v => v._boundButton), false);
-            AddToDisposable(this.OneWayBind (ViewModel, vm => vm.Name, v => v._nameView.Text), false);
+            AddToDisposable(this.BindCommand (ViewModel, vm => vm.DoIt, v => v._boundButton), true);
+            AddToDisposable(this.OneWayBind (ViewModel, vm => vm.Name, v => v._nameView.Text), true);
 
-            this.ViewModel = new MyModel1(this.GetType().Name);
+            this.ViewModel = Shared.Models.GetModel(1);
 
-            AddToDisposable(this.WhenAnyValue (v => v.ViewModel.Name).LogDispose ("Activity WAV").Subscribe (), false);
+            AddToDisposable(this.WhenAnyValue (v => v.ViewModel.Name).LogDispose ("Activity WAV").Subscribe (), true);
         }
 
         private void AddToDisposable(IDisposable disposable,bool add=true)

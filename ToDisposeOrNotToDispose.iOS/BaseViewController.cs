@@ -39,7 +39,8 @@ public class BaseViewController:ReactiveViewController,IViewFor<MyModel1>
         base.DidReceiveMemoryWarning();
 
         // Release any cached data, images, etc that aren't in use.
-    }
+
+        }
 
     #region View lifecycle
 
@@ -58,9 +59,9 @@ public class BaseViewController:ReactiveViewController,IViewFor<MyModel1>
 
         Setup();
 
-        this.ViewModel = new MyModel1(this.GetType().Name);
 
-        AddToDisposable(this.WhenAnyValue (v => v.ViewModel.Name).LogDispose ("Activity WAV").Subscribe (), false);
+
+        AddToDisposable(this.WhenAnyValue (v => v.ViewModel.Name).LogDispose ("Activity WAV").Subscribe (), true);
     }
 
         protected virtual void Setup()
@@ -87,7 +88,6 @@ public class BaseViewController:ReactiveViewController,IViewFor<MyModel1>
 
 
 
-
     public override void ViewDidAppear(bool animated)
     {
         base.ViewDidAppear(animated);
@@ -101,13 +101,9 @@ public class BaseViewController:ReactiveViewController,IViewFor<MyModel1>
     public override void ViewDidDisappear(bool animated)
     {
         base.ViewDidDisappear(animated);
+
+        _cd.Dispose ();
     }
 
-    public override void ViewDidUnload ()
-    {
-            _cd.Dispose ();
-
-            base.ViewDidUnload ();
-    }
     #endregion
 }}
